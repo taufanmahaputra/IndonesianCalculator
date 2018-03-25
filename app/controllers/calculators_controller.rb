@@ -6,7 +6,12 @@ class CalculatorsController < ApplicationController
 
 	def create
 		fill_stack
-		render plain: @text
+
+		operate!
+
+		convert_result_to_string
+		
+		render plain: @result
 	end
 
 	private
@@ -16,19 +21,37 @@ class CalculatorsController < ApplicationController
 	def fill_stack
 		buffer_text = Queue.new
 		@number = []
-		operator = []
+		@operator = []
 
 		@texts.each do |text|
 			if (!operator? text)
 				buffer_text << (text)
 			else
-				operator << (text)
+				@operator << (text)
 				string_to_number @number, buffer_text
 			end
 		end
 
 		string_to_number @number, buffer_text
-		puts "#{@number}"
+	end
+
+	def operate!
+		operator = @operator.pop
+		num_sec = @number.pop
+		num_first = @number.pop
+
+		case operator
+		when "tambah"
+			@result = num_first + num_sec
+		when "kurang"
+			@result = num_first - num_sec
+		when "kali"
+			@result = num_first * num_sec
+		when "bagi"
+			@result = num_first / num_sec
+		when "pangkat"
+			@result = num_first ** num_sec
+		end
 	end
 
 	def string_to_number number, buffer_text
