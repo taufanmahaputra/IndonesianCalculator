@@ -18,7 +18,7 @@ class CalculatorsController < ApplicationController
 			temp.reverse_each {|text| test_str += " " + text}
 
 			puts "#{test_str}"
-		elsif (@result >= 10)
+		else
 			test_str = @string_result
 		end
 			
@@ -80,6 +80,7 @@ class CalculatorsController < ApplicationController
 				add_interval interval
 			elsif (result > 10)
 				@string_result += " belas"
+				result = 0
 			end
 				
 
