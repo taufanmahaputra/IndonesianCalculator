@@ -11,7 +11,19 @@ class CalculatorsController < ApplicationController
 
 		convert_result_to_string
 
-		render plain: @result
+		if (@result >= 20)
+			temp = @string_result.split(' ')
+			puts "#{temp}"
+			test_str = ""
+			temp.reverse_each {|text| test_str += " " + text}
+
+			puts "#{test_str}"
+		elsif (@result >= 10)
+			test_str = @string_result
+		end
+			
+
+		render plain: params[:perhitungan] + " adalah" + test_str
 	end
 
 	private
@@ -58,15 +70,21 @@ class CalculatorsController < ApplicationController
 		@string_result = ""
 		interval = 1
 
-		while @result > 0 do
-			num = @result % 10
+		result = @result
+		while result > 0 do
+			num = result % 10
 
 			convert_to_string num
-			add_interval interval
+			
+			if (result > 20)
+				add_interval interval
+			elsif (result > 10)
+				@string_result += " belas"
+			end
+				
 
-			interval++
-			@result /= 10
-			puts "#{@string_result}"
+			interval += 1
+			result /= 10
 		end
 	end
 
@@ -79,6 +97,16 @@ class CalculatorsController < ApplicationController
 	end
 
 	def add_interval interval
+		@string_result += " "
+
+		case interval
+		when 1
+			@string_result += "puluh"
+		when 2
+			@string_result += "ratus"
+		when 3
+			@string_result += "ribu"
+		end
 	end
 
 	def convert_to_number number_string
