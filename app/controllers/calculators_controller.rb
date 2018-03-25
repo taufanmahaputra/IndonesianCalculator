@@ -10,7 +10,7 @@ class CalculatorsController < ApplicationController
 		operate!
 
 		convert_result_to_string
-		
+
 		render plain: @result
 	end
 
@@ -54,12 +54,31 @@ class CalculatorsController < ApplicationController
 		end
 	end
 
+	def convert_result_to_string
+		@string_result = ""
+		interval = 1
+
+		while @result > 0 do
+			num = @result % 10
+
+			convert_to_string num
+			add_interval interval
+
+			interval++
+			@result /= 10
+			puts "#{@string_result}"
+		end
+	end
+
 	def string_to_number number, buffer_text
 		@buffer_number = 0
 		while (!buffer_text.empty?) do
 			convert_to_number buffer_text.pop
 		end
 		@number << @buffer_number
+	end
+
+	def add_interval interval
 	end
 
 	def convert_to_number number_string
@@ -90,6 +109,38 @@ class CalculatorsController < ApplicationController
 			@buffer_number += 10
 		when "puluh"
 			@buffer_number *= 10
+		when "ratus"
+			@buffer_number *= 100
+		when "ribu"
+			@buffer_number *= 1000
+		end		
+	end
+
+	def convert_to_string number
+		@string_result += " "
+		case number
+		when 1
+			@string_result += "satu"
+		when 2
+			@string_result += "dua"
+		when 3
+			@string_result += "tiga"
+		when 4
+			@string_result += "empat"
+		when 5
+			@string_result += "lima"
+		when 6
+			@string_result += "enam"
+		when 7
+			@string_result += "tujuh"
+		when 8
+			@string_result += "delapan"
+		when 9
+			@string_result += "sembilan"
+		when 10
+			@string_result += "sepuluh"
+		when 11
+			@string_result += "sebelas"
 		end		
 	end
 
