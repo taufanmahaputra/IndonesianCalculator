@@ -1,0 +1,7 @@
+<form action="<%= calculators_path %>" method="POST">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label>Pertanyaan:</label>
+	<input type="text" name="perhitungan">
+	<input type="submit" value="Submit">
+</form>
