@@ -1,7 +1,13 @@
-<form action="<%= calculators_path %>" method="POST">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<div class="container" style="padding: 60px;">
+	<div class="offset-md-3 col-md-6">
+		<form action="<%= calculators_path %>" method="POST">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-	<label>Pertanyaan:</label>
-	<input type="text" name="perhitungan">
-	<input type="submit" value="Submit">
-</form>
+			<div class="form-group">
+			   <label for="Pertanyaan">Masukkan pertanyaan:</label>
+			   <textarea class="form-control" id="perhitungan" rows="1" name="perhitungan"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Hitung!</button>
+		</form>
+	</div>
+</div>
