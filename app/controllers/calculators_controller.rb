@@ -80,6 +80,9 @@ class CalculatorsController < ApplicationController
 			elsif (result > 10)
 				@string_result += " belas"
 				result = 0
+			elsif (result.equal? 10)
+				@string_result += " sepuluh"
+				result = 0
 			end
 				
 
@@ -111,6 +114,8 @@ class CalculatorsController < ApplicationController
 
 	def convert_to_number number_string
 		case number_string
+		when "nol"
+			@buffer_number += 0
 		when "satu"
 			@buffer_number += 1
 		when "dua"
