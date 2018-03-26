@@ -13,11 +13,9 @@ class CalculatorsController < ApplicationController
 
 		if (@result >= 20)
 			temp = @string_result.split(' ')
-			puts "#{temp}"
+
 			@test_str = ""
 			temp.reverse_each {|text| @test_str += " " + text}
-
-			puts "#{@test_str}"
 		else
 			@test_str = @string_result
 		end
@@ -77,7 +75,7 @@ class CalculatorsController < ApplicationController
 			
 			if (result > 20)
 				add_interval interval
-			elsif (result > 10)
+			elsif (result > 10 && result < 20)
 				@string_result += " belas"
 				result = 0
 			elsif (result.equal? 10)
