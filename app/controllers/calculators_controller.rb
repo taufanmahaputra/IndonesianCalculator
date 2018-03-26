@@ -68,6 +68,11 @@ class CalculatorsController < ApplicationController
 		interval = 1
 
 		result = @result
+
+		if (result == 0)
+			@string_result = " nol"
+		end
+
 		while result > 0 do
 			num = result % 10
 
