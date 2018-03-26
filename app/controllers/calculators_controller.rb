@@ -14,16 +14,15 @@ class CalculatorsController < ApplicationController
 		if (@result >= 20)
 			temp = @string_result.split(' ')
 			puts "#{temp}"
-			test_str = ""
-			temp.reverse_each {|text| test_str += " " + text}
+			@test_str = ""
+			temp.reverse_each {|text| @test_str += " " + text}
 
-			puts "#{test_str}"
+			puts "#{@test_str}"
 		else
-			test_str = @string_result
+			@test_str = @string_result
 		end
-			
 
-		render plain: params[:perhitungan] + " adalah" + test_str
+		@test_str = params[:perhitungan] + " adalah" + @test_str
 	end
 
 	private
